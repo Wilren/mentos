@@ -1,0 +1,36 @@
+{
+  "name": "mentos",
+  "authors": [
+    "Wilren <wilrenclub@gmail.com>"
+  ],
+  "description": "pages",
+  "main": "index",
+  "keywords": [
+    "shop"
+  ],
+  "license": "wilren",
+  "homepage": "index",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "3.3.x",
+    "vue": "*",
+    "jquery": "*",
+    "adminbsb-materialdesign": "*",
+    "moment": "*",
+    "underscore": "*",
+    "waves": "*",
+    "animate-css": "*",
+    "bootstrap-select": "*",
+    "jquery-slimscroll": "*",
+    "axios":"*",
+    "vuetable-2": "*",
+
+  }
+}

@@ -1,0 +1,112 @@
+package ${package.Controller};
+
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.api.R;
+import com.baomidou.mybatisplus.extension.enums.ApiErrorCode;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.wilren.mentos.entity.$!{entity};
+import com.wilren.mentos.service.$!{entity}Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+#if(${restControllerStyle})
+import org.springframework.web.bind.annotation.RestController;
+#else
+import org.springframework.stereotype.Controller;
+#end
+#if(${superControllerClassPackage})
+import ${superControllerClassPackage};
+#end
+
+
+/**
+ * <p>
+ * $!{table.comment} 前端控制器
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${restControllerStyle})
+@RestController
+#else
+@Controller
+#end
+@RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+#if(${kotlin})
+class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
+
+#else
+    #if(${superControllerClass})
+    public class ${table.controllerName} extends ${superControllerClass} {
+    #else
+    public class ${table.controllerName} {
+    #end
+    @Autowired
+    private $!{entity}Service $!{table.entityPath}Service;
+
+    /**
+    * 通过ID查询
+    *
+    * @param id ID
+    * @return $!{entity}
+    */
+    @GetMapping("/info")
+    @ResponseBody
+    public R<$!{entity}> get(Long id) {
+        return R.ok($!{table.entityPath}Service.getById(id));
+    }
+
+
+    /**
+    * 分页查询信息
+    * @param $!{table.entityPath}      查询实体
+    * @param current   当前页
+    * @param size      显示行数
+    * @return
+    */
+    @RequestMapping("/page")
+    @ResponseBody
+    public IPage page($!{entity} $!{table.entityPath},@RequestParam(value = "current") Integer current,@RequestParam(value = "size") Integer size) {
+        Page<$!{entity}> page = new Page<$!{entity}>(current, size);
+        return $!{table.entityPath}Service.page(page, new QueryWrapper<$!{entity}>($!{table.entityPath}));
+    }
+
+
+    /**
+     * 添加
+     * @param  $!{table.entityPath}  实体
+     * @return success/false
+     */
+    @PostMapping("/save")
+    @ResponseBody
+    public R<$!{entity}> save($!{entity} $!{table.entityPath}) {
+        Boolean result = $!{table.entityPath}Service.saveOrUpdate($!{table.entityPath});
+        if(result){
+            $!{table.entityPath} = $!{table.entityPath}Service.getById($!{table.entityPath}.getId());
+            return R.ok($!{table.entityPath});
+        }else{
+            return R.failed(ApiErrorCode.FAILED);
+        }
+    }
+
+    /**
+     * 删除
+     * @param id ID
+     * @return success/false
+     */
+    @PostMapping("/delete")
+    @ResponseBody
+    public R<Boolean> delete(Long id) {
+        $!{entity} $!{table.entityPath} = new $!{entity}();
+        $!{table.entityPath}.setId(id);
+        //$!{table.entityPath}.setUpdateTime(new Date());
+        //$!{table.entityPath}.setDelFlag(CommonConstant.STATUS_DEL);
+        return R.ok($!{table.entityPath}Service.updateById($!{table.entityPath}));
+    }
+}
+
+#end

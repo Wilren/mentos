@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="admin/layout/layout_main"><!-- layout文件路径-->
+<head>
+    <title>用户管理</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="container-fluid">
+
+        <!-- Widgets -->
+        <div class="row clearfix" id="app">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            用户详情
+                        </h2>
+                        <ul class="header-dropdown m-r--5">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="javascript:void(0);">刷新</a></li>
+                                    <li><a href="javascript:void(0);">重置</a></li>
+                                    <li><a href="javascript:void(0);">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="body">
+                        <form id="infoForm" method="POST">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="loginName" v-model="user.loginName" required>
+                                    <label class="form-label">用户名</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="password" class="form-control" name="password" v-model="user.password" required>
+                                    <label class="form-label">密码</label>
+                                </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="name" v-model="user.name" required>
+                                    <label class="form-label">姓名</label>
+                                </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="email" class="form-control" name="email" required>
+                                    <label class="form-label">邮箱</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" name="gender" id="male" class="with-gap">
+                                <label for="male">男</label>
+
+                                <input type="radio" name="gender" id="female" class="with-gap">
+                                <label for="female" class="m-l-20">女</label>
+                            </div>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <textarea name="description" cols="30" rows="5" class="form-control no-resize" required></textarea>
+                                    <label class="form-label">简介</label>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary waves-effect" type="submit" v-on:click="save">提交</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- #END# Browser Usage -->
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script type="text/javascript" layout:fragment="script">
+    Vue.use(Vuetable);
+    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+    // var axiosInstance = axios.create({
+    //     headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+    // });
+
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            user: {}
+        },
+        created: function () {
+
+        },
+        mounted: function () {
+            this.init();
+        },
+        watch: {},
+        filters: {},
+        methods: {
+            init: function () {
+                $('#infoForm').validate({
+                    rules: {
+                        'checkbox': {
+                            required: true
+                        },
+                        'gender': {
+                            required: true
+                        }
+                    },
+                    highlight: function (input) {
+                        $(input).parents('.form-line').addClass('error');
+                    },
+                    unhighlight: function (input) {
+                        $(input).parents('.form-line').removeClass('error');
+                    },
+                    errorPlacement: function (error, element) {
+                        $(element).parents('.form-group').append(error);
+                    }
+                });
+            },
+            save: function () {
+                var that = this;
+                // $.ajax({
+                //     data: that.user,
+                //     type: 'POST',
+                //     url: '/mentos/admin/user/save',
+                //     success: function (res) {
+                //         console.log(res);
+                //     },
+                //     error: function (e) {
+                //         console.log(e);
+                //     }
+                // });
+                axios.post('/mentos/admin/user/save', that.user);
+                axios({
+                    method: 'post',
+                    url: '/mentos/admin/user/save',
+                    data: that.user,
+                }).then(function (response) {
+                    console.log(response);
+
+                }).catch(function (error) {
+                });
+
+
+            }
+        }
+    });
+
+
+</script>
+</body>
+</html>

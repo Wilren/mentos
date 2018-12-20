@@ -1,0 +1,5 @@
+.vuetable [type="checkbox"]:not(:checked), .vuetable [type="checkbox"]:checked {
+    position: relative;
+    left: 0;
+    opacity: 100;
+}

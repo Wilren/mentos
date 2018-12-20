@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+    <head>
+        <meta charset="UTF-8"/>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+        <title>Welcome To | Bootstrap Based Admin Template - Material Design</title>
+        <!-- Favicon-->
+        <link rel="icon" th:href="@{/js/components/adminbsb-materialdesign/favicon.ico}" type="image/x-icon"/>
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+        <!-- Bootstrap Core Css -->
+        <link th:href="@{/js/components/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
+
+        <!-- Waves Effect Css -->
+        <link th:href="@{/js/components/waves/dist/waves.min.css}" rel="stylesheet" />
+
+        <!-- Animation Css -->
+        <link th:href="@{/js/components/animate-css/animate.min.css}" rel="stylesheet" />
+
+        <!-- Morris Chart Css-->
+        <link th:href="@{/js/components/adminbsb-materialdesign/plugins/morrisjs/morris.css}" rel="stylesheet" />
+
+        <!-- Custom Css -->
+        <link th:href="@{/js/components/adminbsb-materialdesign/css/style.css}" rel="stylesheet">
+
+        <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+        <link th:href="@{/js/components/adminbsb-materialdesign/css/themes/all-themes.css}" rel="stylesheet" />
+
+
+        <!-- Custom Css -->
+        <link th:href="@{/css/style.css}" rel="stylesheet">
+    </head>
+
+    <body class="theme-orange">
+        <section th:replace="admin/layout/inc/layout_navbar :: topNavbar">
+        </section>
+
+        <section th:replace="admin/layout/inc/layout_left :: leftSidebar">
+        </section>
+
+        <section class="content" layout:fragment="content">
+
+        </section>
+
+
+        <!-- Jquery Core Js -->
+        <script th:src="@{/js/components/adminbsb-materialdesign/plugins/jquery/jquery.min.js}"></script>
+
+        <!-- Bootstrap Core Js -->
+        <script th:src="@{/js/components/adminbsb-materialdesign/plugins/bootstrap/js/bootstrap.js}"></script>
+
+        <!-- Waves Effect Plugin Js -->
+        <script th:src="@{/js/components/adminbsb-materialdesign/plugins/node-waves/waves.js}"></script>
+
+        <!-- Select Plugin Js -->
+        <script th:src="@{/js/components/adminbsb-materialdesign/plugins/bootstrap-select/js/bootstrap-select.js}"></script>
+
+        <!-- Slimscroll Plugin Js -->
+        <script th:src="@{/js/components/adminbsb-materialdesign/plugins/jquery-slimscroll/jquery.slimscroll.js}"></script>
+
+        <!-- Jquery Validation Plugin Css -->
+        <script th:src="@{/js/components/adminbsb-materialdesign/plugins/jquery-validation/jquery.validate.js}"></script>
+
+        <!-- Jquery CountTo Plugin Js -->
+        <script th:src="@{/js/components/adminbsb-materialdesign/plugins/jquery-countto/jquery.countTo.js}"></script>
+
+        <!-- Morris Plugin Js -->
+        <script th:src="@{/js/components/adminbsb-materialdesign/plugins/raphael/raphael.min.js}"></script>
+        <script th:src="@{/js/components/adminbsb-materialdesign/plugins/morrisjs/morris.js}"></script>
+
+        <!-- ChartJs -->
+        <script th:src="@{/js/components/adminbsb-materialdesign/plugins/chartjs/Chart.bundle.js}"></script>
+
+        <!-- Flot Charts Plugin Js -->
+        <script th:src="@{/js/components/adminbsb-materialdesign/plugins/flot-charts/jquery.flot.js}"></script>
+        <script th:src="@{/js/components/adminbsb-materialdesign/plugins/flot-charts/jquery.flot.resize.js}"></script>
+        <script th:src="@{/js/components/adminbsb-materialdesign/plugins/flot-charts/jquery.flot.pie.js}"></script>
+        <script th:src="@{/js/components/adminbsb-materialdesign/plugins/flot-charts/jquery.flot.categories.js}"></script>
+        <script th:src="@{/js/components/adminbsb-materialdesign/plugins/flot-charts/jquery.flot.time.js}"></script>
+
+        <!-- Sparkline Chart Plugin Js -->
+        <script th:src="@{/js/components/adminbsb-materialdesign/plugins/jquery-sparkline/jquery.sparkline.js}"></script>
+
+        <!-- Custom Js -->
+        <script th:src="@{/js/components/adminbsb-materialdesign/js/admin.js}"></script>
+        <script th:src="@{/js/components/adminbsb-materialdesign/js/pages/index.js}"></script>
+
+
+        <!-- Demo Js -->
+        <script th:src="@{/js/components/adminbsb-materialdesign/js/demo.js}"></script>
+
+        <!-- Vue Js -->
+        <script th:src="@{/js/components/vue/dist/vue.min.js}"></script>
+
+        <!-- vuetable-2 -->
+        <script th:src="@{/node_modules/axios/dist/axios.min.js}"></script>
+        <script th:src="@{/node_modules/vuetable-2/dist/vuetable-2.js}"></script>
+
+        <!-- underscore -->
+        <script th:src="@{/js/components/underscore/underscore-min.js}"></script>
+
+
+        <script th:src="@{/js/ms-table.js}"></script>
+
+        <script type="text/javascript" th:inline="javascript">
+            /*<![CDATA[*/
+
+            var basePath = /*[[${#httpServletRequest.getScheme() + "://" + #httpServletRequest.getServerName() + ":" + #httpServletRequest.getServerPort() + #httpServletRequest.getContextPath()}]]*/;
+
+            /*]]>*/
+        </script>
+
+
+
+        <div layout:fragment="script">
+
+        </div>
+
+
+
+    </body>
+
+</html>
