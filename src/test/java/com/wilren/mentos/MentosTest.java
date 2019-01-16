@@ -21,14 +21,14 @@ import java.util.List;
  * @version 1.0
  * @since 2018/10/26/026
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
 public class MentosTest {
 
-    @Resource
+    //@Resource
     private UserMapper mapper;
 
-    @Test
+    //@Test
     public void testPage() {
         //System.out.println("------ 自定义 xml 分页 ------");
         //UserPage selectPage = new UserPage(1, 5).setSelectInt(20);
